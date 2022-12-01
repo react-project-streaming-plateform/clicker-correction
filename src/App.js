@@ -1,23 +1,19 @@
+import  {useState} from "react"
 import logo from './logo.svg';
 import './App.css';
+import Counter from "./Counter"
+import Bonus from "./Bonus"
 
 function App() {
+
+  const [count, setCount] = useState(JSON.parse(localStorage.getItem("count")))
+  const [multiplicateur, setMultiplicateur] = useState(1)
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Counter text="La valeur"  count={count} setCount={setCount} multiplicateur={multiplicateur} />
+      <Bonus text="bonus easy" cost={20} setMultiplicateur={setMultiplicateur} count={count} setCount={setCount} multi={2}/>
+      <Bonus text="bonus hard" cost={100} setMultiplicateur={setMultiplicateur} count={count} setCount={setCount} multi={10}/>
     </div>
   );
 }
